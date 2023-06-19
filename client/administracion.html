@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+            integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
+        <link rel="stylesheet" href="./css/app.css">
+        <script src="./js/app.js" type="module"></script>
+        <title>Crud heroes</title>
+    </head>
+    <body>
+        <header class="header-navigation">
+            <a href="#" class="logo-container">
+                <img src="./images/heroIcon.png" alt="logo de heroe" class="logo">
+                <h2>SUPERHERO</h2>
+                <h2>TIME!</h2>
+            </a>
+            <nav>
+                <ul class="links-container">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="administracion.html">Personajes</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Contacto</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <h1>Crud Heroes</h1>
+
+            <section class="form-container">
+                <form class="formulario-alta">
+                    <fieldset>
+                        <legend>Información Del SuperHeroe</legend>
+                        <div class="form-input">
+                            <label for="nombre"> Nombre:</label>
+                            <input
+                                type="text"
+                                placeholder="Ingrese nombre"
+                                id="nombre"
+                            />
+                        </div>
+                        <div class="form-input">
+                            <i class="fa-solid fa-mask icono"></i>
+                            <label for="alias"> Alias:</label>
+                            <input
+                                type="text"
+                                placeholder="Ingrese alter ego"
+                                id="alias"
+                            />
+                        </div>
+                        <fieldset>
+                            <legend class="legend-editorial"> <i class="fa-solid fa-newspaper icono"></i> Editorial:</legend>
+                            <div class="editorial-container">
+                                <div class="form-input">
+                                    <img src="./images/iconoAvengers.jpg" alt="" class="imagen">
+                                    
+                                    <input
+                                        type="radio"
+                                        value="Marvel"
+                                        name="editorial"
+                                        checked
+                                    />
+                                </div>
+                                <div class="form-input">
+                                    <img src="images/iconoDc.png" alt="" class="imagen-dc">
+                                    <input
+                                        type="radio"
+                                        value="Dc Comics"
+                                        name="editorial"
+                                    />
+                                </div>
+                            </div>
+                        </fieldset>
+                        <div class="form-input">
+                            <i class="fa-solid fa-hand-fist icono"></i> 
+                            <label for="precio"> Fuerza:</label>
+                            <input
+                                type="range"
+                                id="fuerza"
+                                min="0"
+                                max="1000"
+                            />
+                        </div>
+                        <div class="form-input">
+                            <i class="fa-solid fa-gun icono"></i>
+                            <label for="armadura">Arma</label>
+                             <select name="arma" id="arma">
+                            </select>
+                        </div>
+                        <input type="text" hidden value="" />
+                        <button class="btn-guardar">
+                            <i class="fa-regular fa-floppy-disk fa-lg"></i>
+                            Guardar
+                        </button>
+                        <input
+                            type="button"
+                            value="eliminar"
+                            class="btn-guardar btn-eliminar oculto"
+                            id="btnEliminar"
+                        />
+                        <input
+                            type="button"
+                            value="Cancelar"
+                            class="btn-guardar btn-cancelar oculto"
+                            id="btnCancelar"
+                        />
+                        <input type="hidden" id="anuncioId" />
+                    </fieldset>
+                </form>
+            </section>
+            <div class="spinner" id="spinner-container"></div>
+            <section class="table-container" id="table-container"></section>
+        </main>
+        <footer class="footer">
+            <ul class="footer-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="administracion.html">Personajes</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Contacto</a></li>
+            </ul>
+            <p>Laboratorio III - Todos los Derechos Reservados &copy;</p>
+        </footer>
+    </body>
+</html>
