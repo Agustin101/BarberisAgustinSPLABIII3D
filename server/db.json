@@ -1,0 +1,84 @@
+{
+  "heroes": [
+    {
+      "id": 1,
+      "nombre": "Peter Quill",
+      "fuerza": 450,
+      "alias": "Star Lord",
+      "editorial": "Marvel",
+      "arma": "Arma de fuego"
+    },
+    {
+      "id": 2,
+      "nombre": "Peter Quill",
+      "fuerza": 450,
+      "alias": "Star Lord",
+      "editorial": "Marvel",
+      "arma": "Arma de fuego"
+    },
+    {
+      "id": 3,
+      "nombre": "Peter Quill",
+      "fuerza": 450,
+      "alias": "Star Lord",
+      "editorial": "Marvel",
+      "arma": "Arma de fuego"
+    },
+    {
+      "id": 4,
+      "nombre": "Peter Quill",
+      "fuerza": 450,
+      "alias": "Star Lord",
+      "editorial": "Marvel",
+      "arma": "Arma de fuego"
+    },
+    {
+      "id": 5,
+      "nombre": "Agustin",
+      "fuerza": "1000",
+      "alias": "superman",
+      "editorial": "Dc Comics",
+      "arma": "Musculos"
+    },
+    {
+      "id": 6,
+      "nombre": "Sol ",
+      "fuerza": "223",
+      "alias": "carpi",
+      "editorial": "Marvel",
+      "arma": "Arma de fuego"
+    },
+    {
+      "id": 7,
+      "nombre": "Bruce wayne",
+      "fuerza": "880",
+      "alias": "Batman",
+      "editorial": "Dc Comics",
+      "arma": "Musculos"
+    },
+    {
+      "id": 8,
+      "nombre": "",
+      "fuerza": "500",
+      "alias": "",
+      "editorial": "Marvel",
+      "arma": "Armadura"
+    },
+    {
+      "id": 9,
+      "nombre": "",
+      "fuerza": "500",
+      "alias": "",
+      "editorial": "Marvel",
+      "arma": "Armadura"
+    },
+    {
+      "id": 10,
+      "nombre": "",
+      "fuerza": "500",
+      "alias": "",
+      "editorial": "Marvel",
+      "arma": "Armadura"
+    }
+  ]
+}

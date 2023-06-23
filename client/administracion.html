@@ -11,121 +11,263 @@
             crossorigin="anonymous"
             referrerpolicy="no-referrer"
         />
-        <link rel="stylesheet" href="./css/app.css">
+        <link rel="stylesheet" href="./css/index.css" />
+        <link
+            rel="stylesheet"
+            href="./node_modules/bootstrap/dist/css/bootstrap.min.css"
+        />
+        <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
         <script src="./js/app.js" type="module"></script>
         <title>Crud heroes</title>
     </head>
     <body>
-        <header class="header-navigation">
-            <a href="#" class="logo-container">
-                <img src="./images/heroIcon.png" alt="logo de heroe" class="logo">
-                <h2>SUPERHERO</h2>
-                <h2>TIME!</h2>
-            </a>
-            <nav>
-                <ul class="links-container">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="administracion.html">Personajes</a></li>
-                    <li><a href="#">Blog</a></li>
-                    <li><a href="#">Contacto</a></li>
-                </ul>
-            </nav>
-        </header>
-        <main>
-            <h1>Crud Heroes</h1>
+        <nav class="navbar bg-danger navbar-expand-md">
+            <div class="container-fluid">
+                <div
+                    class="col-lg-6 col-md-4 col-12 row justify-content-center justify-content-sm-center col-sm-12 justify-content-lg-start"
+                >
+                    <a
+                        href="#"
+                        class="col-4 offset-3 offset-md-0 navbar-brand col-md-4 col-sm-4"
+                    >
+                        <img
+                            src="./images/clipart3923468.png"
+                            alt="logo de heroe"
+                            class="logo"
+                            width="70"
+                            height="50"
+                        />
+                    </a>
+                </div>
+                <div
+                    class="col-md-8 col-lg-6 col-sm-12 row justify-content-center col-12"
+                >
+                    <button
+                        class="navbar-toggler col-sm-3 col-4"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"
+                    >
+                        <span class="navbar-toggler-icon col-2"></span>
+                    </button>
+                    <ul
+                        class="navbar-nav col-lg-6 col-md-8 flex-md-row flex-sm-column flex-lg-row flex-column justify-content-lg-around justify-content-md-around justify-content-sm-evenly justify-content-center container-fluid col-sm-8 collapse navbar-collapse col-12 align-items-center"
+                        id="navbarSupportedContent"
+                    >
+                        <li class="nav-item link">
+                            <a href="index.html" class="nav-link">Home</a>
+                        </li>
+                        <li class="nav-item link">
+                            <a href="administracion.html" class="nav-link"
+                                >Personajes</a
+                            >
+                        </li>
+                        <li class="nav-item link">
+                            <a href="#" class="nav-link">Blog</a>
+                        </li>
+                        <li class="nav-item link">
+                            <a href="#" class="nav-link">Contacto</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="crud-background">
+            <div class="container-fluid">
+                <main>
+                    <h1 class="text-center text-white">Crud Heroes</h1>
+                    <div class="row justify-content-center">
+                        <form class="formulario-alta col-5">
+                            <fieldset
+                                class="form-control bg-dark border-primary"
+                            >
+                                <legend class="text-white">
+                                    Información Del SuperHeroe
+                                </legend>
+                                <div>
+                                    <label
+                                        for="nombre"
+                                        class="form-label text-white"
+                                    >
+                                        Nombre:</label
+                                    >
+                                    <input
+                                        type="text"
+                                        placeholder="Ingrese nombre"
+                                        id="nombre"
+                                        class="form-control"
+                                        aria-labelledby="validacionNombre"
+                                    />
+                                    <div
+                                        id="validacionNombre"
+                                        class="form-text text-danger"
+                                    >
+                                        q
+                                    </div>
+                                </div>
+                                <div>
+                                    <i
+                                        class="fa-solid fa-mask icono text-white"
+                                    ></i>
+                                    <label
+                                        for="alias"
+                                        class="form-label text-white"
+                                    >
+                                        Alias:</label
+                                    >
+                                    <input
+                                        type="text"
+                                        placeholder="Ingrese alter ego"
+                                        id="alias"
+                                        class="form-control"
+                                        aria-labelledby="validacionAlias"
+                                    />
+                                    <div
+                                        id="validacionAlias"
+                                        class="form-text text-danger"
+                                    >
+                                        q
+                                    </div>
+                                </div>
+                                <div>
+                                    <label for="editorial" class="text-white">
+                                        <i class="fa-solid fa-newspaper"></i>
+                                        Editorial:</label
+                                    >
+                                    <div class="d-flex justify-content-evenly">
+                                        <div class="form-check">
+                                            <img
+                                                src="./images/iconoAvengers.jpg"
+                                                alt=""
+                                                class="img-fluid"
+                                                width="40"
+                                                height="10"
+                                            />
 
-            <section class="form-container">
-                <form class="formulario-alta">
-                    <fieldset>
-                        <legend>Información Del SuperHeroe</legend>
-                        <div class="form-input">
-                            <label for="nombre"> Nombre:</label>
-                            <input
-                                type="text"
-                                placeholder="Ingrese nombre"
-                                id="nombre"
-                            />
-                        </div>
-                        <div class="form-input">
-                            <i class="fa-solid fa-mask icono"></i>
-                            <label for="alias"> Alias:</label>
-                            <input
-                                type="text"
-                                placeholder="Ingrese alter ego"
-                                id="alias"
-                            />
-                        </div>
-                        <fieldset>
-                            <legend class="legend-editorial"> <i class="fa-solid fa-newspaper icono"></i> Editorial:</legend>
-                            <div class="editorial-container">
-                                <div class="form-input">
-                                    <img src="./images/iconoAvengers.jpg" alt="" class="imagen">
-                                    
+                                            <input
+                                                type="radio"
+                                                value="Marvel"
+                                                name="editorial"
+                                                checked
+                                                class="form-check-input mt-3"
+                                            />
+                                        </div>
+                                        <div class="form-check">
+                                            <img
+                                                src="images/iconoDc.png"
+                                                alt=""
+                                                class="img-fluid"
+                                                width="50"
+                                                height="75"
+                                            />
+                                            <input
+                                                type="radio"
+                                                value="Dc Comics"
+                                                name="editorial"
+                                                class="form-check-input mt-3"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <i
+                                        class="fa-solid fa-hand-fist text-white"
+                                    ></i>
+                                    <label
+                                        for="fuerza"
+                                        class="form-label text-white"
+                                    >
+                                        Fuerza:</label
+                                    >
                                     <input
-                                        type="radio"
-                                        value="Marvel"
-                                        name="editorial"
-                                        checked
+                                        type="range"
+                                        id="fuerza"
+                                        min="0"
+                                        max="1000"
+                                        class="form-range"
                                     />
                                 </div>
-                                <div class="form-input">
-                                    <img src="images/iconoDc.png" alt="" class="imagen-dc">
-                                    <input
-                                        type="radio"
-                                        value="Dc Comics"
-                                        name="editorial"
-                                    />
+                                <div>
+                                    <i
+                                        class="fa-solid fa-gun icono text-white"
+                                    ></i>
+                                    <label
+                                        for="armadura"
+                                        class="text-white form-label"
+                                        >Arma</label
+                                    >
+                                    <select
+                                        name="arma"
+                                        id="armas"
+                                        class="form-select mb-2"
+                                    ></select>
                                 </div>
-                            </div>
-                        </fieldset>
-                        <div class="form-input">
-                            <i class="fa-solid fa-hand-fist icono"></i> 
-                            <label for="precio"> Fuerza:</label>
-                            <input
-                                type="range"
-                                id="fuerza"
-                                min="0"
-                                max="1000"
-                            />
-                        </div>
-                        <div class="form-input">
-                            <i class="fa-solid fa-gun icono"></i>
-                            <label for="armadura">Arma</label>
-                             <select name="arma" id="arma">
-                            </select>
-                        </div>
-                        <input type="text" hidden value="" />
-                        <button class="btn-guardar">
-                            <i class="fa-regular fa-floppy-disk fa-lg"></i>
-                            Guardar
-                        </button>
-                        <input
-                            type="button"
-                            value="eliminar"
-                            class="btn-guardar btn-eliminar oculto"
-                            id="btnEliminar"
-                        />
-                        <input
-                            type="button"
-                            value="Cancelar"
-                            class="btn-guardar btn-cancelar oculto"
-                            id="btnCancelar"
-                        />
-                        <input type="hidden" id="anuncioId" />
-                    </fieldset>
-                </form>
-            </section>
-            <div class="spinner" id="spinner-container"></div>
-            <section class="table-container" id="table-container"></section>
-        </main>
-        <footer class="footer">
-            <ul class="footer-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="administracion.html">Personajes</a></li>
-                <li><a href="#">Blog</a></li>
-                <li><a href="#">Contacto</a></li>
-            </ul>
-            <p>Laboratorio III - Todos los Derechos Reservados &copy;</p>
+                                <input type="text" hidden value="" />
+                                <button class="btn btn-success btn-sm">
+                                    <i
+                                        class="fa-regular fa-floppy-disk fa-lg"
+                                    ></i>
+                                    Guardar
+                                </button>
+                                <input
+                                    type="button"
+                                    value="Eliminar"
+                                    class="btn btn-danger btn-sm oculto"
+                                    id="btnEliminar"
+                                />
+                                <input
+                                    type="button"
+                                    value="Cancelar"
+                                    class="btn btn-secondary btn-sm oculto"
+                                    id="btnCancelar"
+                                />
+                                <input type="hidden" id="anuncioId" />
+                            </fieldset>
+                        </form>
+                    </div>
+                    <div class="spinner" id="spinner-container"></div>
+                    <div class="row justify-content-sm-center mt-2">
+                        <div
+                            class="col-12 col-sm-8 col-md-7 overflow-x-hidden"
+                            id="table-container"
+                        ></div>
+                    </div>
+                </main>
+            </div>
+        </div>
+        <footer class="navbar bg-danger bg-gradient">
+            <div
+                class="container-fluid flex-sm-row flex-column align-content-lg-center justify-content-sm-center justify-content-md-center justify-content-sm-center"
+            >
+                <ul
+                    class="navbar-nav flex-sm-row justify-content-sm-center align-items-center col-12 flex-column col-lg-8 col-md-8"
+                >
+                    <li class="nav-item col-2 justify-content-center d-flex">
+                        <a href="index.html" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item col-2 justify-content-center d-flex">
+                        <a href="administracion.html" class="nav-link"
+                            >Personajes</a
+                        >
+                    </li>
+                    <li class="nav-item col-2 justify-content-center d-flex">
+                        <a href="#" class="nav-link">Blog</a>
+                    </li>
+                    <li class="nav-item col-2 justify-content-center d-flex">
+                        <a href="#" class="nav-link">Contacto</a>
+                    </li>
+                </ul>
+                <div
+                    class="col-8 col-lg-4 d-flex align-items-center col-sm-8 col-md-8 justify-content-center"
+                >
+                    <p class="text-center">
+                        Laboratorio III - Todos los Derechos Reservados &copy;
+                    </p>
+                </div>
+            </div>
         </footer>
     </body>
 </html>

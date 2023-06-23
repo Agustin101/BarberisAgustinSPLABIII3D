@@ -1,21 +1,35 @@
 export const crearTabla = (data) => {
     const tabla = document.createElement("table");
+    tabla.classList.add(
+        "table",
+        "table-dark",
+        "table-striped",
+        "table-hover",
+        "table-bordered"
+    );
+
     const tHead = document.createElement("thead");
+    tHead.classList.add("table-dark");
+
     const tBody = document.createElement("tbody");
+    const rowHead = document.createElement("tr");
 
     for (const key in data[0]) {
         if (key === "id") continue;
         const cabecera = document.createElement("th");
+        cabecera.classList.add("text-capitalize");
         cabecera.innerText = key;
-        tHead.appendChild(cabecera);
+        rowHead.appendChild(cabecera);
     }
 
-    const $anuncios = document.getElementById("table-container");
+    const $anunciosContainer = document.getElementById("table-container");
+    tHead.appendChild(rowHead);
     tabla.appendChild(tHead);
     tabla.appendChild(tBody);
     tHead.setAttribute("id", "cabecera");
-    tBody.outerHTML = "<tbody id='filas'></tbody>";
-    $anuncios.appendChild(tabla);
+    tBody.setAttribute("id", "filas");
+
+    $anunciosContainer.appendChild(tabla);
     return tabla;
 };
 
@@ -26,15 +40,13 @@ export const agregarFila = (data) => {
     let valores = Object.values(data);
     tr.dataset.id = valores[0];
     valores.splice(0, 1);
-    valores.forEach((valor, index) => {
+    valores.forEach((valor) => {
         const td = document.createElement("td");
         td.innerText = valor;
         tr.appendChild(td);
     });
 
     $tBody.appendChild(tr);
-    tr.setAttribute("id", data.id);
-
     return tr;
 };
 
@@ -44,9 +56,8 @@ export const cargarAnuncios = (anuncios) => {
         $body.removeChild($body.lastChild);
     }
 
-    anuncios.forEach((anuncio, index) => {
-        const tr = agregarFila(anuncio);
-        if (index % 2 === 0) tr.classList.add("par");
+    anuncios.forEach((anuncio) => {
+        agregarFila(anuncio);
     });
 };
 

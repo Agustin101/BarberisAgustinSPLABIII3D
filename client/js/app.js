@@ -1,4 +1,5 @@
-import { SuperHeroe } from "./personaje.js";
+import { SuperHeroe } from "./superHeroe.js";
+import { getHeroes, postHero } from "./peticiones.js";
 
 import {
     crearTabla,
@@ -7,21 +8,20 @@ import {
     agregarDetalles,
 } from "./tabla.js";
 
+let anuncios = [];
+
 const cargarSelect = (armas) => {
-    const $select = document.getElementById("arma");
+    const $select = document.getElementById("armas");
     const fragment = document.createDocumentFragment();
     armas.forEach((arma) => {
         const opt = document.createElement("option");
         opt.innerText = arma;
-        opt.value = arma; 
+        opt.value = arma;
         fragment.appendChild(opt);
     });
 
-
     $select.appendChild(fragment);
 };
-
-const anuncios = JSON.parse(localStorage.getItem("anuncios")) || [];
 
 function mostrarBotonesEdicion() {
     let $botonCancelar = document.getElementById("btnCancelar");
@@ -40,41 +40,32 @@ function ocultarBotonesEdicion() {
 }
 
 const limpiarCampos = () => {
-    const {
-        anuncioId,
-        nombre,
-        fuerza,
-        alias,
-        editorial,
-        arma
-    } = $form;
+    const { anuncioId, nombre, fuerza, alias, editorial, arma } = $form;
 
     anuncioId.value = "";
     nombre.value = "";
-    fuerza.value = "50";
+    fuerza.value = "500";
     alias.value = "";
     editorial.value = "marvel";
     arma.value = "Armadura";
 };
 
-const crearAnuncio = ({
-    nombre,
-    alias,
-    editorial,
-    fuerza,
-    arma
-}) => {
-    let proximoId = anuncios[anuncios.length - 1]?.id || 0;
-    let anuncio = new SuperHeroe(proximoId + 1, nombre.value, fuerza.value, alias.value, editorial.value, arma.value);
-    anuncios.push(anuncio);
+const crearAnuncio = async ({ nombre, alias, editorial, fuerza, arma }) => {
+    let anuncio = new SuperHeroe(
+        0,
+        nombre.value,
+        fuerza.value,
+        alias.value,
+        editorial.value,
+        arma.value
+    );
 
-    if (anuncios.length === 1) {
-        crearTabla(anuncios);
-        agregarDetalles(anuncios[0]);
+    try {
+        $form.classList.add("oculto");
+        await postHero("http://localhost:3000/heroes", anuncio);
+    } catch (err) {
+        console.log(err);
     }
-    localStorage.setItem("anuncios", JSON.stringify(anuncios));
-    agregarFila(anuncio);
-    limpiarCampos();
 };
 
 const actualizarAnuncio = (
@@ -105,8 +96,7 @@ const agregarAnuncio = (e) => {
     ocultarBotonesEdicion();
 };
 
-const iniciarAplicacion = () => {
-
+const iniciarAplicacion = async () => {
     if (localStorage.getItem("armas") === null) {
         const armas = [
             "Armadura",
@@ -115,7 +105,7 @@ const iniciarAplicacion = () => {
             "Escudo",
             "Arma de fuego",
             "Flechas",
-            "Musculos"
+            "Musculos",
         ];
         localStorage.setItem("armas", JSON.stringify(armas));
         cargarSelect(armas);
@@ -124,18 +114,17 @@ const iniciarAplicacion = () => {
         cargarSelect(armas);
     }
 
-    const anuncios = JSON.parse(localStorage.getItem("anuncios")) || [];
-
-    if (anuncios.length > 0) {
-        setTimeout(() => {
+    try {
+        anuncios = await getHeroes("http://localhost:3000/heroes");
+        if (anuncios.length > 0) {
             crearTabla(anuncios);
-            const $divSpinner = document.querySelector(".spinner");
-            $divSpinner.classList.add("spinner-oculto");
             cargarAnuncios(anuncios);
-        }, 2000);
-    } else {
-        const $divSpinner = document.querySelector(".spinner");
-        $divSpinner.classList.add("spinner-oculto");
+        }
+    } catch (err) {
+        console.log(err);
+    } finally {
+        document.querySelector(".spinner").classList.add("spinner-oculto");
+        ocultarBotonesEdicion();
     }
 };
 
@@ -145,13 +134,7 @@ document.addEventListener("DOMContentLoaded", iniciarAplicacion);
 
 document.getElementById("btnCancelar").addEventListener("click", () => {
     limpiarCampos();
-    let $btn = document.getElementById("btnCancelar");
-    $btn.classList.remove("visible");
-    $btn.classList.add("oculto");
-
-    let $btnEliminar = document.getElementById("btnEliminar");
-    $btnEliminar.classList.remove("visible");
-    $btnEliminar.classList.add("oculto");
+    ocultarBotonesEdicion();
 });
 
 document.getElementById("btnEliminar").addEventListener("click", () => {
@@ -175,9 +158,7 @@ document.addEventListener("click", (e) => {
         $element.parentNode !== null &&
         $element.parentNode.getAttribute("data-id")
     ) {
-        const $form = document.forms[0];
         const id = parseInt($element.parentNode.dataset.id);
-        const anuncios = JSON.parse(localStorage.getItem("anuncios"));
         const anuncio = anuncios.find((a) => a.id === id);
         const { anuncioId, nombre, alias, editorial, fuerza, arma } = $form;
 
@@ -188,9 +169,5 @@ document.addEventListener("click", (e) => {
         fuerza.value = anuncio.fuerza;
         arma.value = anuncio.arma;
         mostrarBotonesEdicion();
-        // const $btnGuardar = document.querySelector(".btn-guardar");
-        // $btnGuardar.textContent = "Actualizar";
     }
 });
-
-
