@@ -3,7 +3,7 @@
     {
       "id": 1,
       "nombre": "Peter Quill",
-      "fuerza": 450,
+      "fuerza": "1000",
       "alias": "Star Lord",
       "editorial": "Marvel",
       "arma": "Arma de fuego"
@@ -57,28 +57,26 @@
       "arma": "Musculos"
     },
     {
-      "id": 8,
-      "nombre": "",
-      "fuerza": "500",
-      "alias": "",
-      "editorial": "Marvel",
-      "arma": "Armadura"
+      "id": 8
     },
     {
-      "id": 9,
-      "nombre": "",
-      "fuerza": "500",
-      "alias": "",
-      "editorial": "Marvel",
-      "arma": "Armadura"
+      "id": 9
     },
     {
       "id": 10,
-      "nombre": "",
-      "fuerza": "500",
-      "alias": "",
+      "nombre": "jeje",
+      "fuerza": "1000",
+      "alias": "jeje",
       "editorial": "Marvel",
-      "arma": "Armadura"
+      "arma": "Martillo"
+    },
+    {
+      "id": 11,
+      "nombre": "Claudia",
+      "fuerza": "172",
+      "alias": "Diaz",
+      "editorial": "Dc Comics",
+      "arma": "Escudo"
     }
   ]
 }

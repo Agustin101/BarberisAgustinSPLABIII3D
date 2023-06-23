@@ -24,3 +24,20 @@ export const postHero = async (url, anuncio) => {
         throw err;
     }
 };
+
+export const updateHero = async (url, data, id) =>{
+    const opts = {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json;charset=utf-8",
+        },
+        body: JSON.stringify(data),
+    };
+
+    try {
+        const res = await fetch(`${url}/${id}`, opts);
+        if (!res.ok) throw Error(`Error ${res.status} - ${res.statusText}`);
+    } catch (err) {
+        throw err;
+    }
+}

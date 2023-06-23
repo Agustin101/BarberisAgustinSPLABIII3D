@@ -1,5 +1,5 @@
 import { SuperHeroe } from "./superHeroe.js";
-import { getHeroes, postHero } from "./peticiones.js";
+import { getHeroes, postHero, updateHero } from "./peticiones.js";
 
 import {
     crearTabla,
@@ -68,19 +68,18 @@ const crearAnuncio = async ({ nombre, alias, editorial, fuerza, arma }) => {
     }
 };
 
-const actualizarAnuncio = (
+const actualizarAnuncio = async (
     anuncioId,
     { nombre, alias, editorial, fuerza, arma }
 ) => {
-    let anuncio = anuncios.find((x) => x.id === anuncioId);
-    anuncio.nombre = nombre.value;
-    anuncio.alias = alias.value;
-    anuncio.editorial = editorial.value;
-    anuncio.fuerza = fuerza.value;
-    anuncio.arma = arma.value;
-    localStorage.setItem("anuncios", JSON.stringify(anuncios));
-    cargarAnuncios(anuncios);
-    limpiarCampos();
+    const updatedHero = new SuperHeroe(anuncioId, nombre.value, fuerza.value,alias.value,editorial.value,arma.value);
+    console.log(updatedHero);
+    try{
+        await updateHero("http://localhost:3000/heroes",updatedHero,anuncioId);
+    }
+    catch (err){
+        console.log(err);
+    }
 };
 
 const agregarAnuncio = (e) => {
@@ -92,7 +91,6 @@ const agregarAnuncio = (e) => {
     } else {
         actualizarAnuncio(parseInt(anuncioId.value), $form);
     }
-
     ocultarBotonesEdicion();
 };
 
