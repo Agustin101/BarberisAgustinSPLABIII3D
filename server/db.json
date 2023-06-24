@@ -41,34 +41,12 @@
       "arma": "Musculos"
     },
     {
-      "id": 6,
-      "nombre": "Sol ",
-      "fuerza": "223",
-      "alias": "carpi",
-      "editorial": "Marvel",
-      "arma": "Arma de fuego"
-    },
-    {
       "id": 7,
       "nombre": "Bruce wayne",
       "fuerza": "880",
       "alias": "Batman",
       "editorial": "Dc Comics",
       "arma": "Musculos"
-    },
-    {
-      "id": 8
-    },
-    {
-      "id": 9
-    },
-    {
-      "id": 10,
-      "nombre": "jeje",
-      "fuerza": "1000",
-      "alias": "jeje",
-      "editorial": "Marvel",
-      "arma": "Martillo"
     },
     {
       "id": 11,

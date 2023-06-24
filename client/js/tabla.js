@@ -1,11 +1,18 @@
 export const crearTabla = (data) => {
+    const $anunciosContainer = document.getElementById("table-container");
+    while($anunciosContainer.hasChildNodes()){
+        $anunciosContainer.removeChild($anunciosContainer.lastChild);
+    }
+
+
     const tabla = document.createElement("table");
     tabla.classList.add(
         "table",
         "table-dark",
         "table-striped",
         "table-hover",
-        "table-bordered"
+        "table-bordered",
+        "table-responsive-sm"
     );
 
     const tHead = document.createElement("thead");
@@ -22,7 +29,6 @@ export const crearTabla = (data) => {
         rowHead.appendChild(cabecera);
     }
 
-    const $anunciosContainer = document.getElementById("table-container");
     tHead.appendChild(rowHead);
     tabla.appendChild(tHead);
     tabla.appendChild(tBody);

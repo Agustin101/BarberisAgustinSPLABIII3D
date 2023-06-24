@@ -1,5 +1,5 @@
 import { SuperHeroe } from "./superHeroe.js";
-import { getHeroes, postHero, updateHero } from "./peticiones.js";
+import { getHeroes, postHero, updateHero, deleteHero } from "./peticiones.js";
 
 import {
     crearTabla,
@@ -117,6 +117,7 @@ const iniciarAplicacion = async () => {
         if (anuncios.length > 0) {
             crearTabla(anuncios);
             cargarAnuncios(anuncios);
+            calcularPromedio(anuncios);
         }
     } catch (err) {
         console.log(err);
@@ -124,9 +125,14 @@ const iniciarAplicacion = async () => {
         document.querySelector(".spinner").classList.add("spinner-oculto");
         ocultarBotonesEdicion();
     }
+
+    checksFiltros.forEach(check => {
+        check.addEventListener("change", onChangeCheck); 
+    });
 };
 
 const $form = document.forms[0];
+const checksFiltros = document.querySelectorAll("div input[type=checkbox]");
 $form.addEventListener("submit", agregarAnuncio);
 document.addEventListener("DOMContentLoaded", iniciarAplicacion);
 
@@ -135,18 +141,16 @@ document.getElementById("btnCancelar").addEventListener("click", () => {
     ocultarBotonesEdicion();
 });
 
-document.getElementById("btnEliminar").addEventListener("click", () => {
-    const $form = document.querySelector(".formulario-alta");
-    const anuncios = JSON.parse(localStorage.getItem("anuncios"));
+document.getElementById("btnEliminar").addEventListener("click", async () => {
     let { anuncioId } = $form;
     anuncioId = parseInt(anuncioId.value);
-    const anunciosActual = anuncios.filter(
-        (anuncio) => anuncio.id !== anuncioId
-    );
-    cargarAnuncios(anunciosActual);
-    limpiarCampos();
-    localStorage.clear();
-    localStorage.setItem("anuncios", JSON.stringify(anunciosActual));
+
+    try{
+        await deleteHero("http://localhost:3000/heroes",anuncioId);
+    }
+    catch (err){
+        console.log(err);
+    }
 });
 
 document.addEventListener("click", (e) => {
@@ -169,3 +173,55 @@ document.addEventListener("click", (e) => {
         mostrarBotonesEdicion();
     }
 });
+
+document.getElementById("selectFiltros").addEventListener("change", onChangeSelect);
+
+function onChangeCheck(e){
+    let anunciosFiltrados = obtenerAnunciosCheckeados(anuncios);
+    anunciosFiltrados = filtrarAnunciosPorEditorial(document.getElementById("selectFiltros").value, anunciosFiltrados);
+    crearTabla(anunciosFiltrados);
+    cargarAnuncios(anunciosFiltrados);
+};
+
+function obtenerAnunciosCheckeados(anuncios){
+    return anuncios.map(a => {
+        let anuncioFiltrado = {id : a.id };
+
+        checksFiltros.forEach(c =>{
+            if(c.checked){
+                anuncioFiltrado[c.value] = a[c.value];
+            }
+        })
+        return anuncioFiltrado;
+    });
+}
+
+function onChangeSelect(e){
+    let anunciosFiltrados = filtrarAnunciosPorEditorial(e.target.value,anuncios);
+    calcularPromedio(anunciosFiltrados);
+    anunciosFiltrados = obtenerAnunciosCheckeados(anunciosFiltrados);
+    crearTabla(anunciosFiltrados);
+    cargarAnuncios(anunciosFiltrados);
+};
+
+function filtrarAnunciosPorEditorial(editorial,anuncios){
+    let anunciosFiltrados = [];
+
+    if(editorial == "Marvel"){
+        anunciosFiltrados = anuncios.filter( a => a.editorial == "Marvel");
+    }else if (editorial == "Dc Comics"){
+        anunciosFiltrados = anuncios.filter( a => a.editorial != "Marvel");
+    }else{
+        anunciosFiltrados = anuncios.map(a => a);
+    }
+
+    return anunciosFiltrados;
+};
+
+function calcularPromedio(anuncios){
+    let fuerza = anuncios.reduce((acc, val) => 
+    acc + parseFloat(val.fuerza),0);
+
+    const $txtPromedio = document.getElementById("txtPromedio");
+    $txtPromedio.value = (fuerza / anuncios.length).toFixed(2);
+}

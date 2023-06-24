@@ -41,3 +41,19 @@ export const updateHero = async (url, data, id) =>{
         throw err;
     }
 }
+
+export const deleteHero = async (url, id) =>{
+    const opts = {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json;charset=utf-8",
+        },
+    };
+
+    try {
+        const res = await fetch(`${url}/${id}`, opts);
+        if (!res.ok) throw Error(`Error ${res.status} - ${res.statusText}`);
+    } catch (err) {
+        throw err;
+    }
+}

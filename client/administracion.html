@@ -229,9 +229,53 @@
                         </form>
                     </div>
                     <div class="spinner" id="spinner-container"></div>
-                    <div class="row justify-content-sm-center mt-2">
+                    <div class="row justify-content-center mt-2 mx-1 me-4">
+                        <div class="col-7 bg-secondary bg-gradient-secondary">
+                            <h2 class="text-center h3">Filtros</h2>
+                            <div class="row align-items-center mb-2 justify-content-center">
+                                <div class="col-6">
+                                    <p class="d-inline">Filtrar por:</p>
+                                    <select name="selectFiltros" id="selectFiltros" class="form-select-sm w-50">
+                                        <option value="Todos">Todos</option>
+                                        <option value="Dc Comics">Dc Comics</option>
+                                        <option value="Marvel">Marvel</option>
+                                    </select>
+                                </div>
+                                <div class="col-6">
+                                    <p class="d-inline">Promedio de fuerza:</p>
+                                    <input type="text" class="form-control-sm w-25 m-2" disabled id="txtPromedio">
+                                </div>
+                            </div>
+                            <div>
+                                <p class="h4">Campos mostrados (tilde los campos que quiere ver)</p>
+                                <div class="d-flex justify-content-evenly">
+                                    <div>
+                                        <input type="checkbox" name="filtroNombre" id="filtroNombre" class="form-check-input" value="nombre" checked>
+                                        <label for="filtroNombre">Nombre</label>
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" name="filtroFuerza" id="filtroFuerza" class="form-check-input" value="fuerza" checked>
+                                        <label for="filtroFuerza">Fuerza</label>
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" name="filtroAlias" id="filtroAlias" class="form-check-input" value="alias" checked>
+                                        <label for="filtroAlias">Alias</label>
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" name="filtroEditorial" id="filtroEditorial" class="form-check-input" value="editorial" checked>
+                                        <label for="filtroEditorial">Editorial</label>
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" name="filtroArma" id="filtroArma" class="form-check-input" value="arma" checked>
+                                        <label for="filtroArma">Arma</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container-fluid row justify-content-sm-center mt-2">
                         <div
-                            class="col-12 col-sm-8 col-md-7 overflow-x-hidden"
+                            class="col-12 col-sm-10 col-md-7"
                             id="table-container"
                         ></div>
                     </div>
