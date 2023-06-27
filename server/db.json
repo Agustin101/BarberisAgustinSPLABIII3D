@@ -5,56 +5,16 @@
       "nombre": "Peter Quill",
       "fuerza": "1000",
       "alias": "Star Lord",
-      "editorial": "Marvel",
+      "editorial": "Dc Comics",
       "arma": "Arma de fuego"
     },
     {
       "id": 2,
-      "nombre": "Peter Quill",
-      "fuerza": 450,
-      "alias": "Star Lord",
-      "editorial": "Marvel",
-      "arma": "Arma de fuego"
-    },
-    {
-      "id": 3,
-      "nombre": "Peter Quill",
-      "fuerza": 450,
-      "alias": "Star Lord",
-      "editorial": "Marvel",
-      "arma": "Arma de fuego"
-    },
-    {
-      "id": 4,
-      "nombre": "Peter Quill",
-      "fuerza": 450,
-      "alias": "Star Lord",
-      "editorial": "Marvel",
-      "arma": "Arma de fuego"
-    },
-    {
-      "id": 5,
-      "nombre": "Agustin",
-      "fuerza": "1000",
-      "alias": "superman",
-      "editorial": "Dc Comics",
-      "arma": "Musculos"
-    },
-    {
-      "id": 7,
       "nombre": "Bruce wayne",
-      "fuerza": "880",
+      "fuerza": "1000",
       "alias": "Batman",
       "editorial": "Dc Comics",
       "arma": "Musculos"
-    },
-    {
-      "id": 11,
-      "nombre": "Claudia",
-      "fuerza": "172",
-      "alias": "Diaz",
-      "editorial": "Dc Comics",
-      "arma": "Escudo"
     }
   ]
 }
