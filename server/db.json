@@ -3,17 +3,33 @@
     {
       "id": 1,
       "nombre": "Peter Quill",
-      "fuerza": "1000",
+      "fuerza": "209",
       "alias": "Star Lord",
-      "editorial": "Dc Comics",
+      "editorial": "Marvel",
       "arma": "Arma de fuego"
     },
     {
-      "id": 2,
+      "id": 4,
+      "nombre": "Peter parker up",
+      "fuerza": "133",
+      "alias": "Spiderman up",
+      "editorial": "Marvel",
+      "arma": "Martillo"
+    },
+    {
+      "id": 5,
       "nombre": "Bruce wayne",
-      "fuerza": "1000",
+      "fuerza": "241",
       "alias": "Batman",
       "editorial": "Dc Comics",
+      "arma": "Musculos"
+    },
+    {
+      "id": 6,
+      "nombre": "Clark kent",
+      "fuerza": "35",
+      "alias": "superman",
+      "editorial": "Marvel",
       "arma": "Musculos"
     }
   ]

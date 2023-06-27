@@ -1,9 +1,5 @@
 const agregarFiltros = (data, contenedor) => {
     const keys = Object.keys(data);
-    //     <div>
-    //     <input type="checkbox" name="filtroNombre" id="filtroNombre" class="form-check-input" value="nombre" checked>
-    //     <label for="filtroNombre">Nombre</label>
-    // </div>
 
     keys.forEach((k) => {
         if (k == "id") return;

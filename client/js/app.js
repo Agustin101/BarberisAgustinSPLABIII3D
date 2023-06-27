@@ -1,5 +1,10 @@
 import { SuperHeroe } from "./superHeroe.js";
-import { getHeroes, postHero, updateHero, deleteHero } from "./peticiones.js";
+import {
+    getHeroesFetch,
+    postHeroAjax,
+    putHeroAjax,
+    deleteHeroFetch,
+} from "./peticiones.js";
 import { crearFiltrosColumnas } from "./filtros.js";
 
 import {
@@ -51,7 +56,7 @@ const limpiarCampos = () => {
     arma.value = "Armadura";
 };
 
-const crearAnuncio = async ({ nombre, alias, editorial, fuerza, arma }) => {
+const crearAnuncio = ({ nombre, alias, editorial, fuerza, arma }) => {
     let hayError = false;
 
     if (nombre.value.trim() == "") {
@@ -68,7 +73,7 @@ const crearAnuncio = async ({ nombre, alias, editorial, fuerza, arma }) => {
         document.getElementById("validacionAlias").classList.add("oculto");
     }
 
-    if (hayError) return Promise.reject("Campos sin completar");
+    if (hayError) return;
 
     let anuncio = new SuperHeroe(
         0,
@@ -79,20 +84,14 @@ const crearAnuncio = async ({ nombre, alias, editorial, fuerza, arma }) => {
         arma.value
     );
 
-    try {
-        $form.classList.add("spinner-oculto");
-        document.getElementById("filtrosContainer").classList.add("oculto");
-        document
-            .getElementById("table-container")
-            .classList.add("spinner-oculto");
-        document.querySelector(".spinner").classList.remove("spinner-oculto");
-        await postHero("http://localhost:3000/heroes", anuncio);
-    } catch (err) {
-        console.log(err);
-    }
+    $form.classList.add("spinner-oculto");
+    document.getElementById("filtrosContainer").classList.add("oculto");
+    document.getElementById("table-container").classList.add("spinner-oculto");
+    document.querySelector(".spinner").classList.remove("spinner-oculto");
+    postHeroAjax(anuncio, "http://localhost:3000/heroes");
 };
 
-const actualizarAnuncio = async (
+const actualizarAnuncio = (
     anuncioId,
     { nombre, alias, editorial, fuerza, arma }
 ) => {
@@ -105,21 +104,11 @@ const actualizarAnuncio = async (
         arma.value
     );
 
-    try {
-        $form.classList.add("spinner-oculto");
-        document.getElementById("filtrosContainer").classList.add("oculto");
-        document
-            .getElementById("table-container")
-            .classList.add("spinner-oculto");
-        document.querySelector(".spinner").classList.remove("spinner-oculto");
-        await updateHero(
-            "http://localhost:3000/heroes",
-            updatedHero,
-            anuncioId
-        );
-    } catch (err) {
-        console.log(err);
-    }
+    $form.classList.add("spinner-oculto");
+    document.getElementById("filtrosContainer").classList.add("oculto");
+    document.getElementById("table-container").classList.add("spinner-oculto");
+    document.querySelector(".spinner").classList.remove("spinner-oculto");
+    putHeroAjax(updatedHero, "http://localhost:3000/heroes");
 };
 
 const agregarAnuncio = (e) => {
@@ -158,7 +147,7 @@ const iniciarAplicacion = async () => {
     }
 
     try {
-        anuncios = await getHeroes("http://localhost:3000/heroes");
+        anuncios = await getHeroesFetch("http://localhost:3000/heroes");
         if (anuncios.length > 0) {
             crearTabla(anuncios);
             cargarAnuncios(anuncios);
@@ -200,7 +189,7 @@ document.getElementById("btnEliminar").addEventListener("click", async () => {
             .getElementById("table-container")
             .classList.add("spinner-oculto");
         document.querySelector(".spinner").classList.remove("spinner-oculto");
-        await deleteHero("http://localhost:3000/heroes", anuncioId);
+        await deleteHeroFetch("http://localhost:3000/heroes", anuncioId);
     } catch (err) {
         console.log(err);
     }
@@ -232,11 +221,11 @@ document
     .addEventListener("change", onChangeSelect);
 
 function onChangeCheck(e) {
-    let anunciosFiltrados = obtenerAnunciosCheckeados(anuncios);
-    anunciosFiltrados = filtrarAnunciosPorEditorial(
+    let anunciosFiltrados = filtrarAnunciosPorEditorial(
         document.getElementById("selectFiltros").value,
-        anunciosFiltrados
+        anuncios
     );
+    anunciosFiltrados = obtenerAnunciosCheckeados(anunciosFiltrados);
     crearTabla(anunciosFiltrados);
     cargarAnuncios(anunciosFiltrados);
 }
@@ -275,9 +264,8 @@ function filtrarAnunciosPorEditorial(editorial, anuncios) {
     } else if (editorial == "Dc Comics") {
         anunciosFiltrados = anuncios.filter((a) => a.editorial != "Marvel");
     } else {
-        anunciosFiltrados = anuncios.map((a) => a);
+        return anuncios;
     }
-
     return anunciosFiltrados;
 }
 
@@ -285,5 +273,7 @@ function calcularPromedio(anuncios) {
     let fuerza = anuncios.reduce((acc, val) => acc + parseFloat(val.fuerza), 0);
 
     const $txtPromedio = document.getElementById("txtPromedio");
-    $txtPromedio.value = (fuerza / (anuncios.length > 0 ? anuncios.length : 1)).toFixed(2);
+    $txtPromedio.value = (
+        fuerza / (anuncios.length > 0 ? anuncios.length : 1)
+    ).toFixed(2);
 }

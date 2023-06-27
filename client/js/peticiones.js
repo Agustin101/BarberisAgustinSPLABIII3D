@@ -1,4 +1,4 @@
-export const getHeroes = async (url) => {
+export const getHeroesFetch = async (url) => {
     try {
         const res = await fetch(url);
         if (!res.ok) throw Error(`Error ${res.status} - ${res.statusText}`);
@@ -42,7 +42,7 @@ export const updateHero = async (url, data, id) =>{
     }
 }
 
-export const deleteHero = async (url, id) =>{
+export const deleteHeroFetch = async (url, id) =>{
     const opts = {
         method: "DELETE",
         headers: {
@@ -57,3 +57,40 @@ export const deleteHero = async (url, id) =>{
         throw err;
     }
 }
+
+export const postHeroAjax = (heroe, url) => {
+    const xhr = new XMLHttpRequest();
+
+    xhr.addEventListener("readystatechange", () => {
+        if (xhr.readyState == 4) {
+            if (xhr.status >= 200 && xhr.status < 300) {
+                data = JSON.parse(xhr.responseText);
+            } else {
+               console.error(`Error: ${xhr.status} - ${xhr.statusText}`);
+            }
+        }
+    });
+
+    xhr.open("POST", url);
+    xhr.setRequestHeader("Content-Type", "application/json;charset=utf-8");
+    xhr.send(JSON.stringify(heroe));
+};
+
+export const putHeroAjax = (heroe,url) => {
+    const xhr = new XMLHttpRequest();
+
+    xhr.addEventListener("readystatechange", () => {
+        if (xhr.readyState == 4) {
+            if (xhr.status >= 200 && xhr.status < 300) {
+                data = JSON.parse(xhr.responseText);
+                console.log(data);
+            } else {
+                console.error(`Error: ${xhr.status} - ${xhr.statusText}`);
+            }
+        }
+    });
+
+    xhr.open("PUT", `${url}/${heroe.id}`);
+    xhr.setRequestHeader("Content-Type", "application/json;charset=utf-8");
+    xhr.send(JSON.stringify(heroe));
+};
